@@ -5,8 +5,7 @@ import thunk from "redux-thunk";
 import { push } from "react-router-redux";
 import * as $ from "jquery";
 import { expect } from "chai";
-import bootstrap from "../src/index";
-import interfaces from "../src/interfaces/interfaces";
+import { bootstrap, interfaces } from "../src/index";
 import { ACTION_TYPES, getRoutes, getReducers } from "./stubs";
 
 const CONTAINER_ID = "root";

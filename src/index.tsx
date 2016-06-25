@@ -77,4 +77,4 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
 
 }
 
-export default bootstrap;
+export { bootstrap, interfaces };
