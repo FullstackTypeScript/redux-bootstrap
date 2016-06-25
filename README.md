@@ -79,7 +79,7 @@ All you need to do is import your routes file, your reducers and any additional 
 and pass them to the `bootstrap` function as configuration:
 
 ```ts
-import bootstrap from "redux-bootstrap";
+import { bootstrap } from "redux-bootstrap";
 import routes from "./routes";
 import usersReducer from "./reducers/usersReducer";
 import reposReducer from "./reducers/reposReducer";
