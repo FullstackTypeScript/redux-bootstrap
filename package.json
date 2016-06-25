@@ -23,12 +23,12 @@
   },
   "homepage": "https://github.com/remojansen/redux-bootstrap#readme",
   "dependencies": {
-    "history": "^2.1.1",
+    "history": "^2.1.2",
     "immutable": "^3.7.6",
     "react": "^15.0.2",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.4",
-    "react-router": "^2.2.4",
+    "react-router": "^2.5.1",
     "react-router-redux": "^4.0.2",
     "redux": "^3.5.2",
     "redux-devtools": "^3.2.0",
@@ -40,6 +40,7 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
+    "envify": "^3.4.1",
     "gulp": "^3.9.1",
     "gulp-codecov": "^2.0.1",
     "gulp-tslint": "^5.0.0",
@@ -56,7 +57,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "redux-thunk": "^2.0.1",
     "run-sequence": "^1.2.1",
-    "tslint": "^3.7.4",
+    "tslint": "^3.12.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },

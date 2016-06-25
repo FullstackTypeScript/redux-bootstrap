@@ -16,13 +16,14 @@
         "outDir": "temp"
     },
     "files": [
-        "test/index.test.tsx"
+        "test/index.test.tsx",
+        "node_modules/immutable/dist/immutable.d.ts",
+        "typings/index.d.ts"
     ],
     "exclude": [
         "node_modules",
         "wwwroot",
-        "typings/main",
-        "typings/main.d.ts",
+        "typings/index.d.ts",
         "type_definitions"
     ]
 }

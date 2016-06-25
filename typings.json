@@ -1,26 +1,24 @@
 {
   "name": "redux-bootstrap",
-  "dependencies": {
-    "chai": "registry:npm/chai#3.5.0+20160415060238"
-  },
   "devDependencies": {},
   "globalDependencies": {
-    "jquery": "registry:dt/jquery#1.10.0+20160417213236",
+    "chai": "registry:dt/chai#3.4.0+20160601211834",
+    "jquery": "registry:dt/jquery#1.10.0+20160620094458",
     "jsdom": "registry:dt/jsdom#2.0.0+20160316155526",
-    "mocha": "registry:dt/mocha#2.2.5+20160317120654",
-    "node": "registry:dt/node#6.0.0+20160514165920",
-    "react": "registry:dt/react#0.14.0+20160423065914",
+    "mocha": "registry:dt/mocha#2.2.5+20160619032855",
+    "node": "registry:dt/node#6.0.0+20160621231320",
+    "react": "registry:dt/react#0.14.0+20160621225615",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
     "react-redux": "registry:dt/react-redux#4.4.0+20160501125835",
-    "react-router": "registry:dt/react-router#2.0.0+20160501155536",
+    "react-router": "registry:dt/react-router#2.0.0+20160621215300",
     "react-router-redux": "registry:dt/react-router-redux#4.0.0+20160316155526",
-    "react-router/history": "registry:dt/react-router/history#2.0.0+20160316155526",
+    "react-router/history": "registry:dt/react-router/history#2.0.0+20160608102730",
     "redux": "registry:dt/redux#3.3.1+20160326112656",
     "redux-devtools": "registry:dt/redux-devtools#3.0.0+20151215130854",
     "redux-devtools-dock-monitor": "registry:dt/redux-devtools-dock-monitor#1.0.1+20151216103641",
     "redux-devtools-log-monitor": "registry:dt/redux-devtools-log-monitor#1.0.1+20151216103641",
     "redux-immutable": "registry:dt/redux-immutable#3.0.5+20160316155526",
-    "redux-logger": "registry:dt/redux-logger#2.6.0+20160316155526",
+    "redux-logger": "registry:dt/redux-logger#2.6.0+20160619033847",
     "redux-thunk": "registry:dt/redux-thunk#2.0.1+20160317120654"
   }
 }

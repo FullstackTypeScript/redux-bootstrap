@@ -1,5 +1,3 @@
-/// <reference path="./interfaces/interfaces.d.ts" />
-
 import * as React from "react";
 import { render as renderToDOM } from "react-dom";
 import { createHistory as createBrowserHistory } from "history";
@@ -10,6 +8,7 @@ import { createSelector } from "reselect";
 import * as Immutable from "immutable";
 import getRoot from "./containers/root";
 import configureStore from "./store/configure_store";
+import interfaces from "./interfaces/interfaces";
 
 const initialRouterReducerState = Immutable.fromJS({
     locationBeforeTransitions: null
@@ -26,7 +25,7 @@ const routerReducer = (state = initialRouterReducerState, action: any) => {
 
 const getRouting = (state: any) => state.get("routing");
 
-function bootstrap(options: BoostrapOptions): BootstrapResult {
+function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapResult {
 
     // Validate options and set defaults
     if (options === undefined) { throw new TypeError("Null argument options."); };

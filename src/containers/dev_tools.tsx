@@ -1,5 +1,3 @@
-/// <reference path="../interfaces/interfaces.d.ts" />
-
 import * as React from "react";
 import { createDevTools } from "redux-devtools";
 import LogMonitor from "redux-devtools-log-monitor";

@@ -38,7 +38,9 @@ var tsLibProject = tsc.createProject("tsconfig.json");
 gulp.task("build-lib", function() {
     return gulp.src([
         "src/**/*.ts",
-        "src/**/*.tsx"
+        "src/**/*.tsx",
+        "node_modules/immutable/dist/immutable.d.ts",
+        "typings/index.d.ts"
     ])
     .pipe(tsc(tsLibProject))
     .on("error", function (err) {
@@ -52,7 +54,9 @@ var tsEsProject = tsc.createProject("tsconfig.json", { target: "es6", module : "
 gulp.task("build-es", function() {
     return gulp.src([
         "src/**/*.ts",
-        "src/**/*.tsx"
+        "src/**/*.tsx",
+        "node_modules/immutable/dist/immutable.d.ts",
+        "typings/index.d.ts"
     ])
     .pipe(tsc(tsEsProject))
     .on("error", function (err) {
@@ -71,7 +75,9 @@ gulp.task("build-test", function() {
         "src/**/*.ts",
         "src/**/*.tsx",
         "test/**/*.ts",
-        "test/**/*.tsx"
+        "test/**/*.tsx",
+        "node_modules/immutable/dist/immutable.d.ts",
+        "typings/index.d.ts"
     ])
     .pipe(tsc(tstProject))
     .on("error", function (err) {

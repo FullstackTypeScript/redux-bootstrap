@@ -2,11 +2,11 @@
 /// <reference path="../react/react.d.ts" />
 /// <reference path="./redux-bootstrap.d.ts" />
 
-import { bootstrap } from "redux-bootstrap";
+import { bootstrap, interfaces } from "redux-bootstrap";
 
 let routes: JSX.Element = null;
 
-let result = bootstrap({
+let options: interfaces.BoostrapOptions = {
     container: "root",
     initialState: {},
     middlewares: [],
@@ -15,7 +15,9 @@ let result = bootstrap({
         usersReducer: (previousState: any, action: any) => { return null; }
     },
     routes: routes
-});
+};
+
+let result: interfaces.BootstrapResult = bootstrap(options);
 
 console.log(result.store);
 console.log(result.history);
