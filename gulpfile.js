@@ -18,15 +18,15 @@ var gulp        = require("gulp"),
 //******************************************************************************
 gulp.task("lint", function() {
     
-    var config =  { emitError: (process.env.CI) ? true : false };
+    var config =  { formatter: "verbose", emitError: (process.env.CI) ? true : false };
     
     return gulp.src([
         "src/**/**.ts",
         "test/**/**.test.ts",
         "type_definitions/redux-bootstrap/*.ts"
     ])
-    .pipe(tslint())
-    .pipe(tslint.report("verbose", config));
+    .pipe(tslint(config))
+    .pipe(tslint.report());
 });
 
 //******************************************************************************
