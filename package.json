@@ -44,7 +44,7 @@
     "chai": "^3.5.0",
     "envify": "^3.4.1",
     "gulp": "^3.9.1",
-    "gulp-tslint": "^5.0.0",
+    "gulp-tslint": "^6.0.1",
     "gulp-typescript": "^2.13.0",
     "jquery": "^3.0.0",
     "karma": "^1.0.0",
