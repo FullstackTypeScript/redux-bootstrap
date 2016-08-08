@@ -55,7 +55,7 @@
     "karma-mocha-reporter": "^2.0.5",
     "karma-phantomjs-launcher": "^1.0.0",
     "mocha": "^3.0.1",
-    "phantomjs-prebuilt": "^2.1.8",
+    "phantomjs-prebuilt": "^2.1.11",
     "publish-please": "^2.1.4",
     "redux-thunk": "^2.0.1",
     "run-sequence": "^1.2.1",
