@@ -8,6 +8,7 @@
 		"dts": true,
 		"lib": true,
 		"es": true,
-		"temp": true
+		"temp": true,
+		"coverage": true
 	}
 }
