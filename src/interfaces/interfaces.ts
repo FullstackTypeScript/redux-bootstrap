@@ -1,10 +1,18 @@
+import * as History from "history";
+import * as Redux from "redux";
+import * as ReactRouterRedux from "react-router-redux";
+
 namespace interfaces {
+
+    export interface ConfigureStore extends Function {
+        (middlewares: Redux.Middleware[], rootReducer: Object, initialState: any): Redux.Store<any>;
+    }
 
     export interface BoostrapOptions {
         routes: JSX.Element;
         reducers: ReducersOption;
-        createHistory?: HistoryModule.CreateHistory<HistoryModule.History>;
-        historyOptions?: HistoryModule.HistoryOptions;
+        createHistory?: History.CreateHistory<History.History>;
+        historyOptions?: History.HistoryOptions;
         middlewares?: Redux.Middleware[];
         render?: Function;
         initialState?: any;

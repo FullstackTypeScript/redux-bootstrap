@@ -4,6 +4,10 @@
 		"**/.git": true,
 		"**/.DS_Store": true,
 		"src/**/*.js": true,
-		"src/**/*.*.js": true
+		"src/**/*.*.js": true,
+		"dts": true,
+		"lib": true,
+		"es": true,
+		"temp": true
 	}
 }

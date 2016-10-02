@@ -22,8 +22,7 @@ gulp.task("lint", function() {
     
     return gulp.src([
         "src/**/**.ts",
-        "test/**/**.test.ts",
-        "type_definitions/redux-bootstrap/*.ts"
+        "test/**/**.test.ts"
     ])
     .pipe(tslint(config))
     .pipe(tslint.report());
@@ -37,11 +36,9 @@ var tsLibProject = tsc.createProject("tsconfig.json");
 gulp.task("build-lib", function() {
     return gulp.src([
         "src/**/*.ts",
-        "src/**/*.tsx",
-        "node_modules/immutable/dist/immutable.d.ts",
-        "typings/index.d.ts"
+        "src/**/*.tsx"
     ])
-    .pipe(tsc(tsLibProject))
+    .pipe(tsLibProject())
     .on("error", function (err) {
         process.exit(1);
     })
@@ -53,36 +50,61 @@ var tsEsProject = tsc.createProject("tsconfig.json", { target: "es6", module : "
 gulp.task("build-es", function() {
     return gulp.src([
         "src/**/*.ts",
-        "src/**/*.tsx",
-        "node_modules/immutable/dist/immutable.d.ts",
-        "typings/index.d.ts"
+        "src/**/*.tsx"
     ])
-    .pipe(tsc(tsEsProject))
+    .pipe(tsEsProject())
     .on("error", function (err) {
         process.exit(1);
     })
     .js.pipe(gulp.dest("es/"));
 });
 
-//******************************************************************************
-//* BUILD TESTS
-//******************************************************************************
-var tstProject = tsc.createProject("tsconfig.test.json");
+var tsDtsProject = tsc.createProject("tsconfig.json", {
+    declaration: true,
+    noResolve: false
+});
 
-gulp.task("build-test", function() {
+gulp.task("build-dts", function() {
     return gulp.src([
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "test/**/*.ts",
-        "test/**/*.tsx",
-        "node_modules/immutable/dist/immutable.d.ts",
-        "typings/index.d.ts"
+        "src/**/*.ts"
     ])
-    .pipe(tsc(tstProject))
+    .pipe(tsDtsProject())
     .on("error", function (err) {
         process.exit(1);
     })
-    .js.pipe(gulp.dest("temp/"));
+    .dts.pipe(gulp.dest("dts"));
+
+});
+
+//******************************************************************************
+//* BUILD TESTS
+//******************************************************************************
+var tstProject = tsc.createProject("tsconfig.json");
+
+gulp.task("build-src", function() {
+    return gulp.src([
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ])
+    .pipe(tstProject())
+    .on("error", function (err) {
+        process.exit(1);
+    })
+    .js.pipe(gulp.dest("temp/src/"));
+});
+
+var tsTestProject = tsc.createProject("tsconfig.json");
+
+gulp.task("build-test", function() {
+    return gulp.src([
+        "test/**/*.ts",
+        "test/**/*.tsx"
+    ])
+    .pipe(tsTestProject())
+    .on("error", function (err) {
+        process.exit(1);
+    })
+    .js.pipe(gulp.dest("temp/test/"));
 });
 
 gulp.task("bundle", function() {
@@ -101,22 +123,6 @@ gulp.task("bundle", function() {
                 .pipe(source(outputFileName))
                 .pipe(buffer())
                 .pipe(gulp.dest(outputFolder));
-});
-
-//******************************************************************************
-//* BUILD TYPE DEFINITIONS
-//******************************************************************************
-var tsTypeDefinitionsProject = tsc.createProject("tsconfig.json");
-
-gulp.task("build-type-definitions", function() {
-  return gulp.src([
-        "type_definitions/redux-bootstrap/*.tests.tsx"
-      ])
-      .pipe(tsc(tsTypeDefinitionsProject))
-      .on("error", function (err) {
-          process.exit(1);
-      })
-      .js.pipe(gulp.dest("type_definitions/"));
 });
 
 //******************************************************************************
@@ -144,9 +150,10 @@ gulp.task("build", function(cb) {
       "lint", 
       [
           "build-es", 
-          "build-lib", 
-          "build-test", 
-          "build-type-definitions"
+          "build-lib",
+          "build-dts",
+          "build-src",
+          "build-test",
       ],
       "bundle",
       cb);

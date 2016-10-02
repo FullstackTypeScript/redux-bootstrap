@@ -25,6 +25,7 @@ build/Release
 lib
 es
 temp
+dts
 
 # Dependency directory
 node_modules

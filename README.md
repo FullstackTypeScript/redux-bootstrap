@@ -69,7 +69,7 @@ The preceding command will install `redux-bootstrap` and the following dependenc
  
 Then use the `bootstrap` function in your application’s entry point.
 
-> Note: The following example uses two pieces of Redux middleware: `redux-thunk` and `redux-logger`. These packages are optional but if you are going to use them you will need to install them first:
+> Note: The following example uses two pieces of Redux middleware: `redux-thunk` and `redux-logger`.These packages are optional but if you are going to use them you will need to install them first:
 >
 > ```ts
 > $ npm install redux-thunk redux-logger --save
@@ -143,10 +143,17 @@ if (module.hot) {
 ```
 
 ## TypeScript Support
-The NPM package includes type definitions:
+The NPM package includes type definitions. TypeScript 2.0 or higher and
+the following `tsconfig.json` configuration is required.
 
-```ts
-/// <reference path="node_modules/redux-bootstrap/type_definitions/redux-bootstrap/redux-bootstrap.d.ts" />
+```
+{
+    "compilerOptions": {
+        "lib": ["es6", "dom"],
+        "types": ["node"],
+        "jsx": "react"
+    }
+}
 ```
 
 TypeScript is recommended if you want to enjoy the best development experience.

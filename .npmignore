@@ -6,6 +6,7 @@ bundled
 build
 coverage
 docs
+dts
 wiki
 gulpfile.js
 bower.json

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as Immutable from "immutable";
 import { interfaces } from "../src/index";
+import * as Redux from "redux";
 
 // ******************************************************************************
 // * UTILS

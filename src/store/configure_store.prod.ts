@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
+import * as Redux from "redux";
 
 function configureStore(
   middlewares: Redux.Middleware[],

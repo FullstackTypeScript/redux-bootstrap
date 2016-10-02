@@ -1,9 +1,9 @@
 import * as React from "react";
-import { createDevTools } from "redux-devtools";
+import * as ReduxDevtols from "redux-devtools";
 import LogMonitor from "redux-devtools-log-monitor";
 import DockMonitor from "redux-devtools-dock-monitor";
 
-let DevTools = createDevTools(
+let DevTools: any = ReduxDevtols.createDevTools(
     <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-w">
         <LogMonitor />
     </DockMonitor>

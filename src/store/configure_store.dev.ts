@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import DevTools from "../containers/dev_tools";
+import * as Redux from "redux";
 
 export default function configureStore(
     middlewares: Redux.Middleware[],

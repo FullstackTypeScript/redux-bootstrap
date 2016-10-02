@@ -1,4 +1,7 @@
-let configureStore: (middlewares: Redux.Middleware[], rootReducer: Object, initialState: any) => Redux.Store<any> = null;
+import * as Redux from "redux";
+import interfaces from "../interfaces/interfaces";
+
+let configureStore: interfaces.ConfigureStore = null;
 import configureStoreProd from "./configure_store.prod";
 import configureStoreDev from "./configure_store.dev";
 

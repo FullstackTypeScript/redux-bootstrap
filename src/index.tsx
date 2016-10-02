@@ -9,6 +9,7 @@ import * as Immutable from "immutable";
 import getRoot from "./containers/root";
 import configureStore from "./store/configure_store";
 import interfaces from "./interfaces/interfaces";
+import * as Redux from "redux";
 
 const initialRouterReducerState = Immutable.fromJS({
     locationBeforeTransitions: null
