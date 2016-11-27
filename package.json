@@ -61,7 +61,7 @@
     "@types/redux-thunk": "^2.1.31",
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
-    "envify": "^3.4.1",
+    "envify": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-tslint": "^6.0.2",
     "gulp-typescript": "^3.0.2",
