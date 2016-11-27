@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/remojansen/redux-bootstrap#readme",
   "dependencies": {
-    "history": "^2.1.2",
+    "history": "^4.2.0",
     "immutable": "^3.7.6",
     "react": "^15.0.2",
     "react-dom": "^15.1.0",
