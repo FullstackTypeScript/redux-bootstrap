@@ -1,4 +1,3 @@
-import * as Redux from "redux";
 import interfaces from "../interfaces/interfaces";
 
 let configureStore: interfaces.ConfigureStore = null;

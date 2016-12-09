@@ -12,6 +12,9 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": false,
-        "noResolve": false
+        "noResolve": false,
+        "noUnusedParameters": false,
+        "noUnusedLocals": true,
+        "strictNullChecks": false
     }
 }

@@ -169,15 +169,6 @@ function getRoutes() {
 // ******************************************************************************
 function getReducers(): interfaces.ReducersOption {
 
-    const counterReducer: Redux.Reducer<any> = (previousState: any = 0, action: any) => {
-        switch (action.type) {
-            case ACTION_TYPES.BUMP_COUNTER:
-                return previousState + 1;
-            default:
-                return previousState;
-        }
-    };
-
     const defaultUsersState = Immutable.fromJS({
         loading: false,
         usersCount: 0

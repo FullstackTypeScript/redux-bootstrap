@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render as renderToDOM } from "react-dom";
 import { createHistory as createBrowserHistory } from "history";
 import { useRouterHistory } from "react-router";

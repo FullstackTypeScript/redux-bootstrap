@@ -1,4 +1,3 @@
-import * as React from "react";
 import RootProd from "./root.prod";
 import RootDev from "./root.dev";
 

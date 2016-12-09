@@ -193,8 +193,6 @@ describe("redux-bootstrap", () => {
 
     describe("Should bootstrap with efficient sync'ed history", () => {
 
-        const BUMP_COUNTER = "BUMP_COUNTER";
-
         let history: ReactRouterRedux.ReactRouterReduxHistory;
         let store: Redux.Store<any>;
 
