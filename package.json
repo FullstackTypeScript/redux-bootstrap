@@ -78,7 +78,7 @@
     "redux-thunk": "^2.0.1",
     "run-sequence": "^1.2.1",
     "tslint": "^4.0.2",
-    "typescript": "^2.0.3",
+    "typescript": "^2.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
