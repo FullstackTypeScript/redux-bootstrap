@@ -1,6 +1,6 @@
 {
   "name": "redux-bootstrap",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.1",
   "description": "Bootstrapping for Redux applications",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -38,7 +38,7 @@
     "@types/redux-immutable": "^3.0.31",
     "@types/redux-logger": "^2.6.32",
     "@types/redux-thunk": "^2.1.31",
-    "history": "^3.0.0",
+    "history": "^3.2.1",
     "immutable": "^3.7.6",
     "react": "^15.0.2",
     "react-dom": "^15.1.0",
