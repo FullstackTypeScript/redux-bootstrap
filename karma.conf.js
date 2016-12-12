@@ -44,6 +44,7 @@ module.exports = function (config) {
       "temp/bundle/index.js" :  ["coverage"]
     },
     files : [
+        { pattern: "node_modules/html5-history-api/history.js", included: true },
         { pattern: "temp/bundle/index.js", included: true }
     ],
     port: 9876,
