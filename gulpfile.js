@@ -66,6 +66,7 @@ var tsDtsProject = tsc.createProject("tsconfig.json", {
 
 gulp.task("build-dts", function() {
     return gulp.src([
+        "src/**/*.tsx",
         "src/**/*.ts"
     ])
     .pipe(tsDtsProject())
