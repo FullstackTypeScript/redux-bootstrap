@@ -63,10 +63,14 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
     let root = getRoot(store, history, routes);
 
     // Render Root coponent
-    const output = render(
-        root,
-        document.getElementById(container)
-    );
+
+    let renderArgs: any[] = [root];
+
+    if (document !== undefined) {
+        renderArgs.push(document.getElementById(container));
+    }
+
+    const output = render(...renderArgs);
 
     return {
         store,

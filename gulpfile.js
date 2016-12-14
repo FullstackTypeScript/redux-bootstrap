@@ -11,6 +11,9 @@ var gulp        = require("gulp"),
     browserify  = require("browserify"),
     source      = require("vinyl-source-stream"),
     buffer      = require("vinyl-buffer"),
+    tsify       = require("tsify"),
+    istanbul    = require("istanbul"),
+    sourcemaps  = require("gulp-sourcemaps"),
     karma       = require("karma");
 
 //******************************************************************************
@@ -80,37 +83,9 @@ gulp.task("build-dts", function() {
 //******************************************************************************
 //* BUILD TESTS
 //******************************************************************************
-var tstProject = tsc.createProject("tsconfig.json");
-
-gulp.task("build-src", function() {
-    return gulp.src([
-        "src/**/*.ts",
-        "src/**/*.tsx"
-    ])
-    .pipe(tstProject())
-    .on("error", function (err) {
-        process.exit(1);
-    })
-    .js.pipe(gulp.dest("temp/src/"));
-});
-
-var tsTestProject = tsc.createProject("tsconfig.json");
-
-gulp.task("build-test", function() {
-    return gulp.src([
-        "test/**/*.ts",
-        "test/**/*.tsx"
-    ])
-    .pipe(tsTestProject())
-    .on("error", function (err) {
-        process.exit(1);
-    })
-    .js.pipe(gulp.dest("temp/test/"));
-});
-
 gulp.task("bundle", function() {
 
-  var mainFilePath = "temp/test/index.test.js";
+  var mainFilePath = "test/index.test.tsx";
   var outputFolder   = "temp/bundle";
   var outputFileName = "index.js";
 
@@ -120,9 +95,12 @@ gulp.task("bundle", function() {
 
   // TS compiler options are in tsconfig.json file
   return bundler.add(mainFilePath)
+                .plugin(tsify)
                 .bundle()
                 .pipe(source(outputFileName))
                 .pipe(buffer())
+                .pipe(sourcemaps.init({ loadMaps: true }))
+                .pipe(sourcemaps.write())
                 .pipe(gulp.dest(outputFolder));
 });
 
@@ -143,30 +121,48 @@ gulp.task("karma", function (done) {
     }).start();
 });
 
+gulp.task("coverage", function (done) {
+
+    // https://github.com/SitePen/remap-istanbul/issues/51#issuecomment-216466344
+
+    var collector = new istanbul.Collector();
+    var reporter = new istanbul.Reporter();
+
+    reporter.add("html");
+    reporter.addAll([ "lcov", "text" ]);
+
+    var remappedJson = require("./coverage/coverage-remapped.json");
+    var keys = Object.keys(remappedJson);
+    var coverage = {};
+
+    for (var i = 0; i < keys.length; i++) {
+        if (keys[ i ].startsWith("src/")) {
+            coverage[ keys[ i ] ] = remappedJson[ keys[ i ] ];
+        }
+    }
+
+    collector.add(coverage);
+
+    reporter.write(collector, true, function() {
+        done();
+    });
+
+});
+
 //******************************************************************************
 //* TASK GROUPS
 //******************************************************************************
-gulp.task("build", function(cb) {
-  runSequence(
-      "lint", 
-      [
-          "build-es", 
-          "build-lib",
-          "build-dts",
-          "build-src",
-          "build-test",
-      ],
-      "bundle",
-      cb);
-});
-
-gulp.task("test", function(cb) {
-  runSequence("karma", cb);
-});
-
 gulp.task("default", function (cb) {
-  runSequence(
-    "build",
-    "test",
-    cb);
+    runSequence(
+        "lint", 
+        [
+            "build-es", 
+            "build-lib",
+            "build-dts"
+        ],
+        "bundle",
+        "karma",
+        "coverage",
+        cb
+    );
 });

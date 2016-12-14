@@ -8,29 +8,13 @@ module.exports = function (config) {
     browsers: [
         "PhantomJS"
     ],
-    reporters: ["mocha", "coverage"],
+    reporters: ["mocha", "coverage", "karma-remap-istanbul"],
     coverageReporter: {
-      dir : "coverage/",
-      type : "lcovonly",
-      check: {
-        global: {
-          statements: 0,
-          branches: 0,
-          functions: 0,
-          lines: 0,
-          excludes: [
-            "node_modules/**/*.js"
-          ]
-        },
-        each: {
-          statements: 0,
-          branches: 0,
-          functions: 0,
-          lines: 0,
-          excludes: [
-            "node_modules/**/*.js"
-          ]
-        }
+      dir : "coverage"
+    },
+    remapIstanbulReporter: {
+      reports: {
+        json: 'coverage/coverage-remapped.json'
       }
     },
     plugins : [
@@ -38,7 +22,8 @@ module.exports = function (config) {
         "karma-coverage",
         "karma-mocha",
         "karma-chai",
-        "karma-phantomjs-launcher"
+        "karma-phantomjs-launcher",
+        "karma-remap-istanbul"
     ],
     preprocessors: {
       "temp/bundle/index.js" :  ["coverage"]
