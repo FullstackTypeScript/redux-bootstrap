@@ -42,7 +42,6 @@ describe("redux-bootstrap", () => {
     });
 
     describe("Should be able to bootstrap applications.", () => {
-
         before(() => {
             bootstrap({
                 container: "root",
@@ -294,6 +293,41 @@ describe("redux-bootstrap", () => {
         it("Should be able to render the users page to string.", () => {
             expect(result.output).to.be.string;
             expect(result.output).to.include('<div id="users_page_title">Users Page!</div>');
+        });
+
+    });
+
+    describe("Should bootstrap trigger callbacks when they are given through RouterParams", () => {
+        let onUpdateFlag = false;
+        let onErrorFlag = false;
+        let result: interfaces.BootstrapResult;
+        let store: Redux.Store<any>;
+        before(() => {
+            onUpdateFlag = false;
+            onErrorFlag = false;
+            result = bootstrap({
+                container: "root",
+                initialState: {},
+                middlewares: [thunk],
+                reducers: getReducers(),
+                routerProps: {
+                    onError: (error) => { onErrorFlag = true; },
+                    onUpdate: () => { onUpdateFlag = true; }
+                },
+                routes: getRoutes()
+            });
+            store = result.store;
+        });
+
+        it("Should be able to trigger onUpdate callback when there is an update in router", () => {
+            store.dispatch(push("/"));
+            store.dispatch(push("/users"));
+            expect(onUpdateFlag).to.eql(true);
+        });
+
+         it("Should be able to trigger onError callback when error occurs when doing transition in routes", () => {
+            store.dispatch(push("/error"));
+            expect(onErrorFlag).to.eql(true);
         });
 
     });

@@ -85,7 +85,7 @@ All you need to do is import your routes file, your reducers and any additional 
 and pass them to the `bootstrap` function as configuration:
 
 ```ts
-import { bootstrap } from "redux-bootstrap";
+import { bootstrap, interfaces } from "redux-bootstrap";
 import routes from "./routes";
 import usersReducer from "./reducers/usersReducer";
 import reposReducer from "./reducers/reposReducer";
@@ -100,7 +100,7 @@ bootstrap({
     initialState: {},                     // optional
     middlewares: [thunk, createLogger()], // optional    
     render: ReactDOM.render,              // optional
-    
+    routerProps: interfaces.RouterProps   // optional
     reducers: {
         usersReducer,
         reposReducer,

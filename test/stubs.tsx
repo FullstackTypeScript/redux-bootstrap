@@ -155,14 +155,18 @@ class ReposPage extends React.Component<any, any> {
 // * ROUTES
 // ******************************************************************************
 function getRoutes() {
+    let error = new Error('error fixture');
+    let getComponent = (_: any, callback: any) => callback(error);
     return (
         <Route path="/" component={AppLayout}>
             <IndexRoute component={Home} />
             <Route path="/users" component={UsersPage} />
             <Route path="/repos" component={ReposPage} />
+            <Route path="/error" getComponent={getComponent} />
         </Route>
     );
 }
+
 
 // ******************************************************************************
 // * REDUCERS
