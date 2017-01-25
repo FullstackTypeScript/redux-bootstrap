@@ -17,6 +17,7 @@ namespace interfaces {
         render?: Function;
         initialState?: any;
         container?: string;
+        routerProps?: RouterProps;
     }
 
     export interface BootstrapResult {
@@ -34,6 +35,11 @@ namespace interfaces {
         store: Redux.Store<any>;
         history: ReactRouterRedux.ReactRouterReduxHistory;
         routes: JSX.Element;
+    }
+
+    export interface RouterProps {
+        onError?: (error: any) => any;
+        onUpdate?: () => any;
     }
 
     export interface NodeModule {

@@ -1,6 +1,6 @@
 {
   "name": "redux-bootstrap",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Bootstrapping for Redux applications",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
-    "@types/history": "^2.0.37",
+    "@types/history": "^2.0.45",
     "@types/jquery": "^2.0.32",
     "@types/jsdom": "^2.0.29",
     "@types/mocha": "^2.2.32",
