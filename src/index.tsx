@@ -1,5 +1,6 @@
 import { render as renderToDOM } from "react-dom";
-import { useRouterHistory, createMemoryHistory } from "react-router";
+import { useRouterHistory } from "react-router";
+import createBrowserHistory from "history/lib/createBrowserHistory";
 import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware } from "react-router-redux";
 import { combineReducers } from "redux-immutable";
 import { createSelector } from "reselect";
@@ -37,7 +38,7 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
 
     // optional
     let container = options.container || "root";
-    const createHistory = options.createHistory || createMemoryHistory;
+    const createHistory = options.createHistory || createBrowserHistory;
     const historyOptions = options.historyOptions || {};
     let initialState = options.initialState || {};
     let immutableInitialState = Immutable.fromJS(initialState);
