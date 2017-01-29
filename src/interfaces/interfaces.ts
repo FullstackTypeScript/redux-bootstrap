@@ -48,6 +48,20 @@ namespace interfaces {
         };
     }
 
+    export interface DevToolsOptions {
+        serialize: {
+            immutable: any
+        };
+    }
+
+    export interface Compose extends Function {
+        <F extends Function>(f: F): F;
+    }
+
+    export interface DevTools extends Function {
+        (options: DevToolsOptions): Compose;
+    }
+
 }
 
 export default interfaces;

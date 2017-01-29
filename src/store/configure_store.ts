@@ -1,9 +1,24 @@
+import { createStore, applyMiddleware, compose } from "redux";
+import * as Redux from "redux";
 import interfaces from "../interfaces/interfaces";
 
-let configureStore: interfaces.ConfigureStore = null;
-import configureStoreProd from "./configure_store.prod";
-import configureStoreDev from "./configure_store.dev";
+function configureStore(
+    middlewares: Redux.Middleware[],
+    rootReducer: Redux.Reducer<any>,
+    initialState: any,
+    devToolsOptions: interfaces.DevToolsOptions
+): Redux.Store<any> {
 
-configureStore = (process.env.NODE_ENV === "production") ? configureStoreProd : configureStoreDev;
+    let devTools: interfaces.DevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+    const composeEnhancers = devTools ? devTools(devToolsOptions) : compose;
+
+    return createStore(
+        rootReducer,
+        initialState,
+        composeEnhancers(
+            applyMiddleware(...middlewares)
+        )
+    );
+}
 
 export default configureStore;

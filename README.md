@@ -16,17 +16,20 @@
 
 **A `bootstrap()` function for initializing [Redux](https://github.com/reactjs/redux) applications.**
 
-This module works by exporting a `bootstrap` function you can call in your project. It does not generate files for you – it is **not a project template or project scaffolding tool**. It is not related to the [Bootstrap](http://getbootstrap.com/) responsive front-end framework.
+This module works by exporting a `bootstrap` function you can call in your project. It does not 
+generate files for you – it is **not a project template or project scaffolding tool**. It is not 
+related to the [Bootstrap](http://getbootstrap.com/) responsive front-end framework.
 
 ## Why do I need this?
-This library handles most of the common application initialization/bootstrapping that takes place every time you create a new Redux project.
+This library handles most of the common application initialization/bootstrapping that takes 
+place every time you create a new Redux project.
 
 When you create a new Redux project you usually need to take care of a few things:
 
 - Install dependencies.
 - Integrate [React Router](https://github.com/reactjs/react-router) with Redux.
 - Create a Root reducer.
-- Enable [DevTools](https://github.com/gaearon/redux-devtools) if environment is development, and disable if environment is production.
+- Configure [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension).
 - Integrate [Immutable](https://facebook.github.io/immutable-js/) with Redux.
 - Apply middleware.
 - Combine reducers into a root reducer.
@@ -50,7 +53,7 @@ Install it via NPM:
 $ npm install --save redux-bootstrap
 ```
 ```
-$ npm install --save-dev @types/history@2.0.45 @types/react @types/react-dom @types/react-redux @types/react-router @types/react-router-redux @types/redux-devtools @types/redux-devtools-dock-monitor @types/redux-devtools-log-monitor @types/redux-immutable
+$ npm install --save-dev @types/history@2.0.45 @types/react @types/react-dom @types/react-redux @types/react-router @types/react-router-redux @types/redux-immutable
 ```
 
 The preceding command will install `redux-bootstrap` and the following dependencies:
@@ -65,9 +68,6 @@ The preceding command will install `redux-bootstrap` and the following dependenc
     "react-router": "^3.0.0",
     "react-router-redux": "^4.0.2",
     "redux": "^3.5.2",
-    "redux-devtools": "^3.2.0",
-    "redux-devtools-dock-monitor": "^1.1.1",
-    "redux-devtools-log-monitor": "^1.1.1",
     "redux-immutable": "^3.0.6",
     "reselect": "^2.5.1"
 }
@@ -75,7 +75,8 @@ The preceding command will install `redux-bootstrap` and the following dependenc
  
 Then use the `bootstrap` function in your application’s entry point.
 
-> Note: The following example uses two pieces of Redux middleware: `redux-thunk` and `redux-logger`.These packages are optional but if you are going to use them you will need to install them first:
+> Note: The following example uses two pieces of Redux middleware: `redux-thunk` and `redux-logger`.
+These packages are optional but if you are going to use them you will need to install them first:
 >
 > ```ts
 > $ npm install redux-thunk redux-logger --save
@@ -112,17 +113,22 @@ bootstrap({
 That’s it – routing, Immutable, and DevTools are ready and you can start working on your app!
 
 ## Where can I find an example?
-If you are looking for a sample application, you can refer to the [redux-bootstrap-example](https://github.com/redux-bootstrap/redux-bootstrap-example) repository.
+If you are looking for a sample application, you can refer to the 
+[redux-bootstrap-example](https://github.com/redux-bootstrap/redux-bootstrap-example) repository.
 
 ## Using `combineReducers`
-Redux Bootstrap uses [Immutable.js](https://facebook.github.io/immutable-js/). The `combineReducers` function from Redux doesn’t work with Immutable objects in the state, so you should use [`redux-immutable`](https://github.com/gajus/redux-immutable)’s `combineReducers` function to solve this problem:
+Redux Bootstrap uses [Immutable.js](https://facebook.github.io/immutable-js/).
+The `combineReducers` function from Redux doesn’t work with Immutable objects in
+the state, so you should use [`redux-immutable`](https://github.com/gajus/redux-immutable)’s
+`combineReducers` function to solve this problem:
 
 ```ts
 import { combineReducers } from "redux-immutable";
 ```
 
 ## Accessing the Store, History & Root Component
-Sometimes you need to access the store, synched history or root component.  The result object returned by the `bootstrap` function provides access to these.
+Sometimes you need to access the store, synched history or root component.  The result object 
+returned by the `bootstrap` function provides access to these.
 
 ```ts
 interface BootstrapResult {

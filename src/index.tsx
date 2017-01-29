@@ -52,7 +52,15 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
     // Configure store
     const routerHistory = useRouterHistory(createHistory)(historyOptions);
     let routerMddlwr: Redux.Middleware = routerMiddleware(routerHistory);
-    const store = configureStore([...middlewares, routerMddlwr], rootReducer, immutableInitialState);
+
+    // More info at https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#windowdevtoolsextensionconfig
+    let devToolsOptions: interfaces.DevToolsOptions = {
+        serialize: {
+            immutable: Immutable
+        }
+    };
+
+    const store = configureStore([...middlewares, routerMddlwr], rootReducer, immutableInitialState, devToolsOptions);
 
     // Create an enhanced history that syncs navigation events with the store
     const history = syncHistoryWithStore(routerHistory, store, {
