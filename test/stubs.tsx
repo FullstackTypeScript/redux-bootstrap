@@ -1,7 +1,8 @@
 import * as React from "react";
 import { IndexRoute, Route, Link } from "react-router";
 import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+// Bug with connect typings. See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/9951
+const { connect } = require("react-redux");
 import * as Immutable from "immutable";
 import { interfaces } from "../src/index";
 import * as Redux from "redux";
@@ -155,7 +156,7 @@ class ReposPage extends React.Component<any, any> {
 // * ROUTES
 // ******************************************************************************
 function getRoutes() {
-    let error = new Error('error fixture');
+    let error = new Error("error fixture");
     let getComponent = (_: any, callback: any) => callback(error);
     return (
         <Route path="/" component={AppLayout}>

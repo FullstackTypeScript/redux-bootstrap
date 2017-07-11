@@ -56,7 +56,7 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
     let routerMddlwr: Redux.Middleware = routerMiddleware(routerHistory);
 
     // More info at https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#windowdevtoolsextensionconfig
-    let devToolsOptions: interfaces.DevToolsOptions = {
+    let devToolsOptions: interfaces.DevToolsOptions = options.devToolsOptions || {
         serialize: {
             immutable: Immutable
         }

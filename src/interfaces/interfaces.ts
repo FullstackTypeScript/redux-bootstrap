@@ -12,6 +12,7 @@ namespace interfaces {
         reducers: ReducersOption;
         createHistory?: History.CreateHistory<History.HistoryOptions, History.History>;
         historyOptions?: History.HistoryOptions;
+        devToolsOptions?: DevToolsOptions;
         middlewares?: Redux.Middleware[];
         render?: Function;
         initialState?: any;
@@ -48,9 +49,21 @@ namespace interfaces {
     }
 
     export interface DevToolsOptions {
-        serialize: {
-            immutable: any
-        };
+        name?: string;
+        actionCreators?: Array<any> | Object;
+        latency?: number;
+        serialize?: boolean | Object;
+        actionSanitizer?: Function;
+        stateSanitizer?: Function;
+        actionBlacklist?: string | Array<string>;
+        actionWhitelist?: string | Array<string>;
+        predicate?: Function;
+        shouldRecordChanges?: boolean;
+        pauseActionType?: string;
+        autoPause?: boolean;
+        shouldStartLocked?: boolean;
+        shouldHotReload?: boolean;
+        features?: Object;
     }
 
     export interface Compose extends Function {
