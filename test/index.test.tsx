@@ -1,4 +1,4 @@
-import { createHashHistory, createMemoryHistory } from "history";
+import { createHistory, createHashHistory, createMemoryHistory } from "history";
 import { unmountComponentAtNode } from "react-dom";
 import { renderToStaticMarkup } from "react-dom/server";
 import thunk from "redux-thunk";
@@ -222,6 +222,38 @@ describe("redux-bootstrap", () => {
             if (removeListener) {
                 removeListener();
             }
+        });
+
+        it("Should not update history with initial state", (done) => {
+            // Set up a spy on history
+            let historyTransitions = 0;
+            const _createHistory = () => {
+                const actualHistory = createHistory({});
+
+                const originalTransition = actualHistory.transitionTo;
+                actualHistory.transitionTo = (...args: any[]) => {
+                    historyTransitions++;
+                    return originalTransition.call(actualHistory, ...args);
+                };
+
+                return actualHistory;
+            };
+
+            // Bootstrap
+            bootstrap({
+                container: "root",
+                createHistory: _createHistory,
+                initialState: {},
+                middlewares: [],
+                reducers: getReducers(),
+                routes: getRoutes()
+            });
+
+            // Expect no transitions
+            setTimeout(() => {
+                expect(historyTransitions).to.eql(0);
+                done();
+            }, 30);
         });
 
         it("Should not call history listener for each 'counter' action (3x)", (done) => {
