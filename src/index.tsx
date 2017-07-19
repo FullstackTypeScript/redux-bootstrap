@@ -16,16 +16,34 @@ const initialRouterReducerState = Immutable.fromJS({
     locationBeforeTransitions: null
 });
 
+/*
+ * `syncHistoryWithStore` in 'react-router-redux' compares location state objects by reference
+ * to avoid pushing history states for current location on initialization.
+ *
+ * Immutable.js changes reference:
+ * const obj = {a: {b: 1}};
+ * Immutable.fromJS(a).toJS().a === obj.a; // false
+ *
+ * So to prevent syncHistoryWithStore from pushing initial state to history
+ * we need to preserve a reference.
+ */
+let lastStoredRoutingState: { locationBeforeTransitions: any };
 const routerReducer = (state = initialRouterReducerState, action: any) => {
     if (action.type === LOCATION_CHANGE) {
-        return state.merge({
-            locationBeforeTransitions: action.payload
-        });
+        lastStoredRoutingState = {locationBeforeTransitions: action.payload};
+        return state.merge(lastStoredRoutingState);
     }
     return state;
 };
 
 const getRouting = (state: any) => state.get("routing");
+let selectLocation = createSelector(getRouting, (routing: any) => {
+  if (Immutable.is(routing, Immutable.fromJS(lastStoredRoutingState))) {
+    return lastStoredRoutingState;
+  }
+  return routing.toJS();
+});
+
 
 function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapResult {
 
@@ -66,7 +84,7 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
 
     // Create an enhanced history that syncs navigation events with the store
     const history = syncHistoryWithStore(routerHistory, store, {
-        selectLocationState: createSelector(getRouting, (routing: any) => routing.toJS())
+        selectLocationState: selectLocation
     });
 
     // root component
