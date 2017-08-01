@@ -4,6 +4,7 @@ import interfaces from "../interfaces/interfaces";
 
 function configureStore(
     middlewares: Redux.Middleware[],
+    enhancers: Redux.StoreEnhancer<any>[],
     rootReducer: Redux.Reducer<any>,
     initialState: any,
     devToolsOptions: interfaces.DevToolsOptions
@@ -16,6 +17,7 @@ function configureStore(
         rootReducer,
         initialState,
         composeEnhancers(
+            ...enhancers,
             applyMiddleware(...middlewares)
         )
     );

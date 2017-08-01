@@ -10,6 +10,7 @@ import { ACTION_TYPES, getRoutes, getReducers } from "./stubs";
 import * as Redux from "redux";
 // import * as ReactRouterRedux from "react-router-redux";
 import * as History from "history";
+import { StoreCreator } from "redux";
 
 
 const CONTAINER_ID = "root";
@@ -62,6 +63,30 @@ describe("redux-bootstrap", () => {
             rootNode.innerHTML = "";
         });
 
+        it("Should apply enhancers", () => {
+          const expectedStoreProp = {};
+          const enhancer = (createStore: StoreCreator) =>
+            (reducer: Redux.Reducer<any>, preloadedState: any, prevEnhancer?: Redux.StoreEnhancer<any>) => {
+              const enhancedStore = createStore(reducer, preloadedState, prevEnhancer);
+
+              // Mark the store with prop so that it is possible to check
+              // if enhancer was applied to resulting store
+              (enhancedStore as any).testProp = expectedStoreProp;
+
+              return enhancedStore;
+            };
+
+          const result = bootstrap({
+            container: "root",
+            enhancers: [enhancer],
+            initialState: {},
+            middlewares: [thunk],
+            reducers: getReducers(),
+            routes: getRoutes()
+          });
+
+          expect((result.store as any).testProp).to.eql(expectedStoreProp);
+        });
 
         it("Should be able to render the home page.", (done) => {
             setTimeout(() => {

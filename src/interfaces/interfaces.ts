@@ -14,6 +14,7 @@ namespace interfaces {
         historyOptions?: History.HistoryOptions;
         devToolsOptions?: DevToolsOptions;
         middlewares?: Redux.Middleware[];
+        enhancers?: Redux.StoreEnhancer<any>[];
         render?: Function;
         initialState?: any;
         container?: string;
@@ -67,7 +68,7 @@ namespace interfaces {
     }
 
     export interface Compose extends Function {
-        <F extends Function>(f: F): F;
+        <F extends Function>(...f: F[]): F;
     }
 
     export interface DevTools extends Function {
