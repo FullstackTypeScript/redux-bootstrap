@@ -63,6 +63,7 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
     let initialState = options.initialState || {};
     let immutableInitialState = Immutable.fromJS(initialState);
     let middlewares = options.middlewares || [];
+    const enhancers = options.enhancers || [];
     const render = options.render || renderToDOM;
 
     // Define the root reducer
@@ -80,7 +81,7 @@ function bootstrap(options: interfaces.BoostrapOptions): interfaces.BootstrapRes
         }
     };
 
-    const store = configureStore([...middlewares, routerMddlwr], rootReducer, immutableInitialState, devToolsOptions);
+    const store = configureStore([...middlewares, routerMddlwr], enhancers, rootReducer, immutableInitialState, devToolsOptions);
 
     // Create an enhanced history that syncs navigation events with the store
     const history = syncHistoryWithStore(routerHistory, store, {
